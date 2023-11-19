@@ -10,16 +10,16 @@ const Footer: FC<Props> = (props): JSX.Element => {
     <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded mt-4">
       <nav className="grid grid-flow-col gap-4">
         <Link href="/about" className="link link-hover">
-          About Me
+          About PLF
         </Link>
         <Link href="/contact" className="link link-hover">
-          Contact Me
+          Contact Us
         </Link>
         <a
           href="https://nextport-alpha.vercel.app/"
           className="link link-hover"
         >
-          Website
+          About Dev
         </a>
         <Link href="/feedback" className="link link-hover">
           Feedback
