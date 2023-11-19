@@ -3,10 +3,9 @@ import {
   calculateCatAge,
   calculateDogAge,
 } from '@/Components/Logic/PetAgeCalc';
+import Image from 'next/image';
 
-interface Props {}
-
-const PetAgeCalculator: React.FC<Props> = (props): JSX.Element => {
+const PetAgeCalculator: React.FC = (): JSX.Element => {
   const [humanAge, setHumanAge] = useState<number>(0);
   const [petType, setPetType] = useState<'cat' | 'dog'>('cat');
   const [calculatedAge, setCalculatedAge] = useState<number | null>(null);
@@ -19,7 +18,7 @@ const PetAgeCalculator: React.FC<Props> = (props): JSX.Element => {
   };
 
   return (
-    <div className="container mx-7  p-4 grid grid-cols-2 gap-4">
+    <div className="container mx-7 p-4 grid grid-cols-2 gap-4 border-x-headline">
       <div className="form-container">
         <form onSubmit={handleSubmit} className="form-control w-full max-w-xs">
           <label className="label">
@@ -28,11 +27,15 @@ const PetAgeCalculator: React.FC<Props> = (props): JSX.Element => {
           <input
             aria-label="Pet's Human Age"
             type="number"
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs  rounded"
             value={humanAge}
             onChange={(e) => setHumanAge(Number(e.target.value))}
           />
-
+          {petType === 'cat' ? (
+            <Image src="/cat.png" alt="cat" width={500} height={300} />
+          ) : (
+            <Image src="/dog.png" alt="dog" width={500} height={300} />
+          )}
           <label className="label">
             <span className="label-text">Select your pet type:</span>
           </label>
