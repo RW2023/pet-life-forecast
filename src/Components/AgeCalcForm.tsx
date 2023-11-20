@@ -1,12 +1,13 @@
-// src/Components/AgeCalcForm.tsx
+// src/Components/PetAgeCalculator.tsx
 'use client';
 import React, { useState } from 'react';
 import {
   calculateCatAge,
   calculateDogAge,
 } from '@/Components/Logic/PetAgeCalc';
+import { getLifeExpectancy } from './Logic/LifeExpectancy'; // Adjust the path as needed
 import Image from 'next/image';
-import ResultsDisplay from '@/Components/Ui/ResultsDisplay';
+import ResultsDisplay from './Ui/ResultsDisplay'; // Adjust the path as needed
 
 const PetAgeCalculator: React.FC = (): JSX.Element => {
   const [humanAge, setHumanAge] = useState<number>(0);
@@ -15,6 +16,7 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
     'small' | 'medium' | 'large' | 'giant'
   >('medium');
   const [calculatedAge, setCalculatedAge] = useState<number | null>(null);
+  const [lifeExpectancy, setLifeExpectancy] = useState<number>(0);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
         ? calculateCatAge(humanAge)
         : calculateDogAge(humanAge, dogBreed);
     setCalculatedAge(age);
+    setLifeExpectancy(getLifeExpectancy(petType, dogBreed));
   };
 
   return (
@@ -93,10 +96,11 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
           </button>
         </form>
       </div>
-
-      <div className='mt-10 sm:m-0'>
-        <ResultsDisplay petType={petType} calculatedAge={calculatedAge} />
-      </div>
+      <ResultsDisplay
+        petType={petType}
+        calculatedAge={calculatedAge}
+        lifeExpectancy={lifeExpectancy}
+      />
     </div>
   );
 };
