@@ -1,3 +1,5 @@
+//src/Components/Logic/PetAgeCalc.ts
+'use client';
 type BreedCategory = 'small' | 'medium' | 'large' | 'giant';
 
 // Function to calculate cat age in cat years
