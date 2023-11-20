@@ -19,7 +19,7 @@ const PetAgeCalculator = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen p-12 mx-auto">
+    <div className="flex flex-col justify-center items-center min-h-screen p-4 lg:p-12 w-full lg:max-w-4xl mx-auto">
       <AgeCalcForm />
     </div>
   );

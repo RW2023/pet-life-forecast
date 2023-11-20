@@ -24,9 +24,12 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="container mx-7 p-4 grid grid-cols-2 gap-4 border-x-headline">
-      <div className="form-container">
-        <form onSubmit={handleSubmit} className="form-control w-full max-w-xs">
+    <div className="container mx-auto p-4 flex flex-col lg:flex-row lg:justify-between lg:items-start">
+      <div className="form-container mb-4 lg:mb-0 lg:w-1/2">
+        <form
+          onSubmit={handleSubmit}
+          className="form-control w-full lg:max-w-lg mx-auto"
+        >
           <label className="label">
             <span className="label-text">
               Enter your {petType}&rsquo;s human age:
@@ -35,7 +38,7 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
           <input
             aria-label={`${petType}&rsquo;s Human Age`}
             type="number"
-            className="input input-bordered w-full max-w-xs rounded"
+            className="input input-bordered w-full rounded"
             value={humanAge}
             onChange={(e) => setHumanAge(Number(e.target.value))}
           />
@@ -49,7 +52,7 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
           </label>
           <select
             aria-label="Pet Type"
-            className="select select-bordered w-full max-w-xs"
+            className="select select-bordered w-full"
             value={petType}
             onChange={(e) => setPetType(e.target.value as 'cat' | 'dog')}
           >
@@ -66,7 +69,7 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
               </label>
               <select
                 aria-label="Dog Breed"
-                className="select select-bordered w-full max-w-xs"
+                className="select select-bordered w-full"
                 value={dogBreed}
                 onChange={(e) =>
                   setDogBreed(
@@ -89,7 +92,7 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
       </div>
 
       {calculatedAge !== null && (
-        <div className="results-container alert alert-success mt-4 w-full">
+        <div className="results-container alert alert-success mt-4 lg:mt-0 lg:w-1/2">
           <Heading title="Results" />
           <p>
             Your {petType}&rsquo;s age in animal years is: {calculatedAge}
