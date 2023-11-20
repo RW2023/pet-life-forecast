@@ -1,10 +1,12 @@
+// src/Components/AgeCalcForm.tsx
+'use client';
 import React, { useState } from 'react';
 import {
   calculateCatAge,
   calculateDogAge,
 } from '@/Components/Logic/PetAgeCalc';
 import Image from 'next/image';
-import Heading from '@/Components/Ui/Heading';
+import ResultsDisplay from '@/Components/Ui/ResultsDisplay';
 
 const PetAgeCalculator: React.FC = (): JSX.Element => {
   const [humanAge, setHumanAge] = useState<number>(0);
@@ -24,12 +26,9 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="container mx-auto p-4 flex flex-col lg:flex-row lg:justify-between lg:items-start">
-      <div className="form-container mb-4 lg:mb-0 lg:w-1/2">
-        <form
-          onSubmit={handleSubmit}
-          className="form-control w-full lg:max-w-lg mx-auto"
-        >
+    <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+      <div className="mb-4 md:mb-0 md:col-span-1">
+        <form onSubmit={handleSubmit} className="form-control w-full mx-auto">
           <label className="label">
             <span className="label-number text-xl font-sans">
               Enter your {petType}&rsquo;s human age:
@@ -42,7 +41,7 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
             value={humanAge}
             onChange={(e) => setHumanAge(Number(e.target.value))}
           />
-          <div className='rounded-md'>
+          <div className="rounded-md">
             {petType === 'cat' ? (
               <Image src="/cat.png" alt="cat" width={500} height={300} />
             ) : (
@@ -95,13 +94,9 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
         </form>
       </div>
 
-      {calculatedAge !== null && (
-        <div className="results-container alert alert-success mt-4 lg:-mt-6 md:w-full lg:w-1/2 md:mx-3">          <Heading title="Results" />
-          <p>
-            Your {petType}&rsquo;s age in animal years is: {calculatedAge}
-          </p>
-        </div>
-      )}
+      <div className='mt-10 sm:m-0'>
+        <ResultsDisplay petType={petType} calculatedAge={calculatedAge} />
+      </div>
     </div>
   );
 };
