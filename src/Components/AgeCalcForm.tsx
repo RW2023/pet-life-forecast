@@ -31,28 +31,32 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
           className="form-control w-full lg:max-w-lg mx-auto"
         >
           <label className="label">
-            <span className="label-text">
+            <span className="label-number text-xl font-sans">
               Enter your {petType}&rsquo;s human age:
             </span>
           </label>
           <input
             aria-label={`${petType}&rsquo;s Human Age`}
             type="number"
-            className="input input-bordered w-full rounded"
+            className="input input-bordered w-full rounded text-lg font-sans"
             value={humanAge}
             onChange={(e) => setHumanAge(Number(e.target.value))}
           />
-          {petType === 'cat' ? (
-            <Image src="/cat.png" alt="cat" width={500} height={300} />
-          ) : (
-            <Image src="/dog.png" alt="dog" width={500} height={300} />
-          )}
-          <label className="label">
-            <span className="label-text">Select your pet type:</span>
+          <div className='rounded-md'>
+            {petType === 'cat' ? (
+              <Image src="/cat.png" alt="cat" width={500} height={300} />
+            ) : (
+              <Image src="/dog.png" alt="dog" width={500} height={300} />
+            )}
+          </div>
+          <label className="label text-lg font-sans">
+            <span className="label-text text-lg font-sans">
+              Select your pet type:
+            </span>
           </label>
           <select
             aria-label="Pet Type"
-            className="select select-bordered w-full"
+            className="select select-bordered w-full text-lg font-sans"
             value={petType}
             onChange={(e) => setPetType(e.target.value as 'cat' | 'dog')}
           >
@@ -62,14 +66,14 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
 
           {petType === 'dog' && (
             <>
-              <label className="label">
-                <span className="label-text">
+              <label className="label text-lg font-sans">
+                <span className="label-text text-lg font-sans">
                   Select your dog&rsquo;s breed size:
                 </span>
               </label>
               <select
                 aria-label="Dog Breed"
-                className="select select-bordered w-full"
+                className="select select-bordered w-full text-lg font-sans"
                 value={dogBreed}
                 onChange={(e) =>
                   setDogBreed(
@@ -92,8 +96,7 @@ const PetAgeCalculator: React.FC = (): JSX.Element => {
       </div>
 
       {calculatedAge !== null && (
-        <div className="results-container alert alert-success mt-4 lg:mt-0 lg:w-1/2">
-          <Heading title="Results" />
+        <div className="results-container alert alert-success mt-4 lg:-mt-6 md:w-full lg:w-1/2 md:mx-3">          <Heading title="Results" />
           <p>
             Your {petType}&rsquo;s age in animal years is: {calculatedAge}
           </p>
